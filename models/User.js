@@ -4,14 +4,14 @@ const User = model('User', UserSchema);
 const UserSchema = new Schema ({
     username: {
         type: String,
-        //unique
-        //required
-        //trimmed
+        unique: true,
+        required: true,
+        trim: true
     },
     email: {
         type: String,
-        //required
-        //unique
+        unique: true,
+        required: true,
         //must match valid email address (google mongoose matching validation)
     },
     thoughts: {

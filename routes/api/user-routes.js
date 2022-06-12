@@ -8,13 +8,17 @@ const {
 
 router
     .route('/')
-    .get(getThought)
+    .get(getUser)
     .post();
 
 router
     .route('/:id')
-    .get()
-    .put()
-    .delete
+    .get(getUserById)
+    .put(updateUser)
+    .post(createUser)
+    .delete(deleteUser);
+
+router
+    .route()
 
 module.exports = router;
