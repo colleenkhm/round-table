@@ -1,29 +1,41 @@
 const { Schema, model } = require('mongoose');
-const User = model('User', UserSchema);
 
-const UserSchema = new Schema ({
-    username: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
+const UserSchema = new Schema (
+    {
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true
+        },
+        email: {
+            type: String,
+            unique: true,
+            required: true,
+            //must match valid email address (google mongoose matching validation)
+        },
+        thoughts: [
+            {
+            type: Schema.Types.ObjectId,
+            ref: "Thought"
+        }
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "User"
+            }
+        ]
     },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        //must match valid email address (google mongoose matching validation)
-    },
-    thoughts: {
-        // id: []
-        // array of id values referencing thought model
-    },
-    friends: {
-        // array of id values referencing user model (self-reference)
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true
+        },
+        id: false
     }
+);
 
-    //Schema Settings
-    // create virtual called friendCount that retrieves length of user's friends array field on query
-});
+const User = model("User", userSchema);
 
 module.exports = User;
