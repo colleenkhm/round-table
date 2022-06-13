@@ -1,6 +1,7 @@
 const { User } = require('../models');
 
 const userController = {
+    // getAllUsers
     getUserById({ params }, res) {
         User.findOne({_id: params.id })
         .then(dbUserData => {
