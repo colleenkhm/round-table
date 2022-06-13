@@ -12,12 +12,12 @@ const UserSchema = new Schema (
             type: String,
             unique: true,
             required: true,
-            //must match valid email address (google mongoose matching validation)
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
         },
         thoughts: [
             {
             type: Schema.Types.ObjectId,
-            ref: "Thought"
+            ref: 'Thought'
         }
         ],
         friends: [
@@ -36,10 +36,10 @@ const UserSchema = new Schema (
     }
 );
 
-UserSchema.virtual("friendCount").get(function () {
+UserSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
 
-const User = model("User", UserSchema);
+const User = model('User', UserSchema);
 
 module.exports = User;
