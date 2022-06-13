@@ -46,7 +46,7 @@ const ThoughtSchema = new Schema (
             type: String,
             required: true
         },
-        reactions: [reactionsSchema]
+        reactions: [ReactionSchema]
     },
     {
         toJSON: {
@@ -55,9 +55,11 @@ const ThoughtSchema = new Schema (
         },
         id: false
     }
-
-    //create virtuals called reactionCount that retrieves length of thoughts reactions array field on query
 );
+
+ThoughtSchema.virtual("reactionCount").get(function () {
+    return this.reactions.length;
+});
 
 const Thought = model('Thought', ThoughtSchema);
 

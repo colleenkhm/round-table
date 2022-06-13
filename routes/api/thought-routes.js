@@ -4,6 +4,7 @@ const {
     getAllThoughts,
     getThoughtById,
     createThought,
+    updateThought,
     deleteThought
 } = require('../../controllers/thought-controller');
 
